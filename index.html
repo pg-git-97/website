@@ -1,39 +1,54 @@
 <!DOCTYPE html>
 <html>
 	<style>
+    	.container {
+        	padding-top: 20px;
+            padding-bottom: 20px;
+        	height: 112px;
+            top: 0;
+            left: 40%;
+            position: relative;
+        }
 		ul {
   			list-style-type: none;
 			margin: 0;
 			padding: 0;
-			overflow: hidden;
 			background-color: #F8F8F8;
+            border-radius: 12px;
 		}
 		li {
 			float: left;
-			border-right:1px solid #bbb;
+			border-right: none;
+		}
+        li:last-child {
+  			border-right: 1px solid #bbb;
+            border-radius: 12px;
 		}
 		li a {
 			display: block;
 			color: black;
 			text-align: center;
-			padding: 14px 16px;
+			padding: 10px 30px;
 			text-decoration: none;
-		}
-		li a:hover:not(.active) {
-			background-color: #111;
+        	border-radius: 12px;
+            border: 1px solid #bbb;
 		}
 		.active {
 			background-color: #080808;
+			color: white;
 		}
 	</style>
 	<title>HOME | Preetham Ganesh</title>
 	<body>
-		<ul>
-			<li><a class='active' href='index.html'>Home</a></li>
-			<li><a href='education.html'>Education</a></li>
-			<li><a href='experience.html'>Experience</a></li>
-			<li><a href='publications.html'>Publications</a></li>
-			<li><a href='projects.html'>Projects</a></li>
-		</ul>
+    	<div class='container'>
+			<ul>
+				<li><a class='active' href='index.html'>Home</a></li>
+				<li><a href='education.html'>Education</a></li>
+				<li><a href='experience.html'>Experience</a></li>
+				<li><a href='publications.html'>Publications</a></li>
+				<li><a href='projects.html'>Projects</a></li>
+			</ul>
+        </div>
+        Head
 	</body>
 </html>
