@@ -1,27 +1,38 @@
 <!DOCTYPE html>
 <html>
 	<style>
-		.btn-group button
-		{
-			margin: 0;
-			position: absolute;
-			left: 50%;
-			background-color: #FFFFFF;
-			color: #000000;
-			padding: 10px 24px;
-			cursor: pointer;
+		.btn-container{
+			height: 112px;
+			position: relative;
+			margin-top: 0;
+			left: 0;
+			margin-left: 0;
+			width: 100%;
+			min-width: 980px;
+		}
+		ul{
+			list-style-none: none;
+			overflow: hidden;
+			background-color: #F8F8F8;
+		}
+		li{
 			float: left;
+			border-right: 1px solid #bbb;
+		}
+		active{
+			background-color: #000000;
 		}
 	</style>
 	<title>HOME | Preetham Ganesh</title>
 	<body>
-		<div class='btn-group'>
-			<button>Home</button>
-			<button>Education</button>
-			<button>Experience</button>
-			<button>Publications</button>
+		<div class='btn-container'>
+			<ul>
+				<li><a class='active' href='index.html'>Home</a></li>
+				<li><a href='education.html'>Education</a></li>
+				<li><a href='experience.html'>Experience</a></li>
+				<li><a href='publications.html'>Publications</a></li>
+				<li><a href='publications.html'>Publications</a></li>
+			</ul>
 		</div>
-		<h1>Hello World</h1>
-		<p>I'm hosted with GitHub Pages</p>
 	</body>
 </html>
