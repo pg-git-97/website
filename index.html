@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style>
@@ -13,8 +14,15 @@
 		p-h1 {
 			margin: 0;
 			padding: 0;
+			padding-bottom: 5px;
 			font-size: 40px;
 			line-height: 50px;
+		}
+		p-h2 {
+			margin: 0;
+			padding: 0;
+			padding-bottom: 5px;
+			line-height: 32px;
 		}
 		p {
 			margin: 0;
@@ -70,9 +78,28 @@
 			margin-left: calc((100% - 940px) / 2);
 			margin-right: calc((100% - 940px) / 2);
 		}
-		.linked {
-			font-size: 36px;
-			color:blue
+		.fa {
+  			padding: 20px;
+  			font-size: 30px;
+  			width: 50px;
+  			text-align: center;
+  			text-decoration: none;
+  			margin: 5px 2px;
+		}
+		.fa:hover {
+    		opacity: 0.7;
+		}
+		.fa-facebook {
+  			background: #3B5998;
+  			color: white;
+		}
+		.fa-linkedin {
+  			background: #007bb5;
+  			color: white;
+		}
+		.fa-instagram {
+  			background: #125688;
+  			color: white;
 		}
 	</style>
     	<title>HOME | Preetham Ganesh</title>
@@ -94,7 +121,9 @@
 			<center>
 				<p class='p-h1'><b>Preetham Ganesh</b></p>
 				<p>Graduate Student at University of Texas at Arlington</p>
-				<i class='fa fa-linkedin-square linked'></i>
+				<p><a href="https://www.linkedin.com/in/preethamganesh/" class="fa fa-linkedin"></a>
+				<a href="https://www.facebook.com/preetham.ganesh.583" class="fa fa-facebook"></a>
+				<a href="https://www.instagram.com/preethamganesh/" class="fa fa-instagram"></a></p>
 			</center>		
 		</div>
 	</body>
