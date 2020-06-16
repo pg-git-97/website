@@ -96,3 +96,7 @@ li a:hover {
   	border-radius: 12px;
   	float: left;
 }
+.about {
+	text-align: justify;
+	text-justify: inter-word;
+}
