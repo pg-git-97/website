@@ -37,17 +37,6 @@ li a:hover {
 	background-color: #080808;
 	color: white;
 }
-.container-main {
-	left: 0;
-	background: rgba(255,255,255, 0.7);
-	min-width: 700px;
-	min-height: 500px;
-	margin-left: calc((100% - 700px) / 2);
-	margin-right: calc((100% - 700px) / 2);
-	padding: 20px;
-	font-family: 'lato';
-	font-size: 18px;
-}
 .container-navigator {
 	top: 0;
 	left: 0;
