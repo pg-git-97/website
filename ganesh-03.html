@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ganesh_03</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>ganesh-03</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,21 +14259,20 @@ a.anchor-link {
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[115]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">unicodedata</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">nltk</span>
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 </pre></div>
 
      </div>
@@ -14327,7 +14326,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_sentence</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
@@ -14347,8 +14346,6 @@ a.anchor-link {
     <span class="n">stemmer</span> <span class="o">=</span> <span class="n">nltk</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">porter</span><span class="o">.</span><span class="n">PorterStemmer</span><span class="p">()</span>
     <span class="n">w</span> <span class="o">=</span> <span class="p">[</span><span class="n">stemmer</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">w</span><span class="p">]</span>
     <span class="n">w</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">w</span>
 </pre></div>
 
@@ -14381,13 +14378,13 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[107]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">retrieve_frequent_words</span><span class="p">(</span><span class="n">unique_words</span><span class="p">):</span>
     <span class="n">new_unique_words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;unk&#39;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">unique_words</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
-        <span class="k">if</span> <span class="n">unique_words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">unique_words</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">:</span>
             <span class="n">new_unique_words</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">new_unique_words</span>
 </pre></div>
@@ -14407,10 +14404,10 @@ a.anchor-link {
     <span class="n">lines</span> <span class="o">=</span> <span class="n">pos_lines</span> <span class="o">+</span> <span class="n">neg_lines</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">lines_to_text</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
     <span class="n">unique_words</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of unique words in training dataset: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of unique words in dataset: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
     <span class="nb">print</span><span class="p">()</span>
     <span class="n">unique_words</span> <span class="o">=</span> <span class="n">retrieve_frequent_words</span><span class="p">(</span><span class="n">unique_words</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New no. of unique words in training dataset: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New no. of unique words in dataset: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_words</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">()</span>
     <span class="n">word_index</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">unique_words</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unique_words</span><span class="p">}</span>
     <span class="k">return</span> <span class="n">word_index</span>
@@ -14493,7 +14490,27 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[108]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">find_probability</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">vocabulary</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">lines_to_text</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">unique_words</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">unique_words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">remove_unk_words</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">):</span>
@@ -14518,39 +14535,17 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[86]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">find_probability</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">lines</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">vocabulary</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">lines_to_text</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
-        <span class="n">unique_words</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">unique_words</span><span class="p">[</span><span class="n">word</span><span class="p">]</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="mi">0</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[120]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
     <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">()</span>
     <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
     <span class="n">train</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
-    <span class="n">val</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
     <span class="n">test</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
     <span class="n">train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
-    <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
     <span class="n">test</span> <span class="o">=</span> <span class="n">test</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">train</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">vectorizer</span>
 </pre></div>
 
      </div>
@@ -14561,79 +14556,12 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[110]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[112]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stddev</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
-    <span class="n">avg</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-    <span class="n">var</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([(</span><span class="n">x</span><span class="o">-</span><span class="n">avg</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">])</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">var</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[113]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">data_summary</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="p">[(</span><span class="n">mean</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">stddev</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">)]</span>
-    <span class="k">del</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">s</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[118]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">class_summary</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data_summary</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">s</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[116]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">calculate_probability</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">stdev</span><span class="p">):</span>
-    <span class="n">exponent</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">mean</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">stdev</span> <span class="o">*</span> <span class="n">stdev</span> <span class="p">)))</span>
-    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">stdev</span><span class="p">))</span> <span class="o">*</span> <span class="n">exponent</span>
+    <span class="n">exponent</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">stdev</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">stdev</span><span class="p">))</span> <span class="o">*</span> <span class="n">exponent</span>
 </pre></div>
 
      </div>
@@ -14644,18 +14572,22 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[117]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">calculate_class_probabilities</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
-    <span class="n">total_rows</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">summaries</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">summaries</span><span class="p">])</span>
-    <span class="n">probabilities</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">class_value</span><span class="p">,</span> <span class="n">class_summaries</span> <span class="ow">in</span> <span class="n">summaries</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">probabilities</span><span class="p">[</span><span class="n">class_value</span><span class="p">]</span> <span class="o">=</span> <span class="n">summaries</span><span class="p">[</span><span class="n">class_value</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">total_rows</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">class_summaries</span><span class="p">)):</span>
-            <span class="n">mean</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">class_summaries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">probabilities</span><span class="p">[</span><span class="n">class_value</span><span class="p">]</span> <span class="o">*=</span> <span class="n">calculate_probability</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">mean</span><span class="p">,</span> <span class="n">stdev</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">probabilities</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">class_separate</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">):</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">train_y</span><span class="p">)</span>
+    <span class="n">class_index</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">subdata</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">cls</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">train_y</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">class_frequency</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+    <span class="n">new_class_frequency</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">counts</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+        <span class="n">class_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">train_y</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">subdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_x</span><span class="p">[</span><span class="n">class_index</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">:]</span>
+        <span class="n">subdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">subdata</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="n">subdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">subdata</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+        <span class="n">new_class_frequency</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">class_frequency</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">class_frequency</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">subdata</span><span class="p">,</span> <span class="n">new_class_frequency</span>
 </pre></div>
 
      </div>
@@ -14666,13 +14598,147 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[121]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">model_training</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">val_y</span><span class="p">):</span>
-    <span class="n">train_data</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">train_x</span><span class="p">[:</span><span class="mi">20000</span><span class="p">],</span> <span class="mi">1</span><span class="p">:</span> <span class="n">train_x</span><span class="p">[</span><span class="mi">20000</span><span class="p">:]}</span>
-    <span class="n">summary</span> <span class="o">=</span> <span class="n">class_summary</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">model_training</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">):</span>
+    <span class="n">separated_dataset</span><span class="p">,</span> <span class="n">class_frequency</span> <span class="o">=</span> <span class="n">class_separate</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">train_y</span><span class="p">)</span>
+    <span class="n">means</span><span class="p">,</span> <span class="n">stdev</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+        <span class="n">means</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">separated_dataset</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">stdev</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">separated_dataset</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">means</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">class_frequency</span><span class="p">,</span> <span class="n">classes</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">class_frequency</span><span class="p">,</span> <span class="n">classes</span><span class="p">):</span>
+    <span class="n">probability</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">means</span><span class="p">)):</span>
+            <span class="n">probability</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">calculate_probability</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">means</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">stdev</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>
+    <span class="n">probability</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">probability</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">probability</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">probability</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">class_frequency</span><span class="p">,</span> <span class="n">classes</span><span class="p">):</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">test_x</span><span class="p">:</span>
+        <span class="n">pred_class</span><span class="p">,</span> <span class="n">max_prob</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">class_index</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">predict_proba</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">class_frequency</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">prob</span> <span class="o">&gt;</span> <span class="n">max_prob</span><span class="p">:</span>
+                <span class="n">max_prob</span> <span class="o">=</span> <span class="n">prob</span>
+                <span class="n">pred_class</span> <span class="o">=</span> <span class="n">class_index</span>
+        <span class="n">pred</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred_class</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pred</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">accuracy_score</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+    <span class="n">acc</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">true</span><span class="p">,</span> <span class="n">pred</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">==</span> <span class="nb">int</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
+                <span class="n">acc</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">continue</span>
+    <span class="k">return</span> <span class="n">acc</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cross_validation</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_cross_val</span><span class="p">):</span>
+    <span class="n">data_split</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">((</span><span class="n">data</span><span class="p">),</span> <span class="n">n_cross_val</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data_split</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">naive_bayes</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">):</span>
+    <span class="n">n_cross_val</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">train_index</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">n_cross_val</span><span class="p">)</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_index</span><span class="p">)):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">train_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">new_train</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">val</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+        <span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">vectorizer</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">new_train</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">],</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">])</span>
+        <span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">new_train</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
+        <span class="n">val_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
+        <span class="n">means</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">class_frequency</span><span class="p">,</span> <span class="n">classes</span> <span class="o">=</span> <span class="n">model_training</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">)</span>
+        <span class="n">val_pred</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">val_x</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">class_frequency</span><span class="p">,</span> <span class="n">classes</span><span class="p">)</span>
+        <span class="n">val_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">val_y</span><span class="p">,</span> <span class="n">val_pred</span><span class="p">)</span>
+        <span class="n">accuracy</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val_acc</span><span class="p">)</span>
+        <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">means</span><span class="p">,</span> <span class="n">stdev</span><span class="p">,</span> <span class="n">class_frequency</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Validation Accuracy for iteration &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">val_acc</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+    <span class="n">min_index</span> <span class="o">=</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">accuracy</span><span class="p">))</span>
+    <span class="n">new_items</span> <span class="o">=</span> <span class="n">items</span><span class="p">[</span><span class="n">min_index</span><span class="p">]</span>
+    <span class="n">test_x</span> <span class="o">=</span> <span class="n">new_items</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">])</span>
+    <span class="n">test_x</span> <span class="o">=</span> <span class="n">test_x</span><span class="o">.</span><span class="n">toarray</span><span class="p">()</span>
+    <span class="n">test_pred</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">test_x</span><span class="p">,</span> <span class="n">new_items</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_items</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">new_items</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">new_items</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">test_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
+    <span class="n">test_acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">test_y</span><span class="p">,</span> <span class="n">test_pred</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test accuracy = &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">test_acc</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">()</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">new_items</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">get_feature_names</span><span class="p">()</span>
+    <span class="n">pos_mean</span> <span class="o">=</span> <span class="n">means</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">neg_mean</span> <span class="o">=</span> <span class="n">means</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pos_ind</span> <span class="o">=</span> <span class="n">pos_mean</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+    <span class="n">neg_ind</span> <span class="o">=</span> <span class="n">neg_mean</span><span class="o">.</span><span class="n">argsort</span><span class="p">()</span>
+    <span class="n">pos_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">pos_mean</span><span class="p">,</span> <span class="n">words</span><span class="p">)))))[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">neg_words</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">neg_mean</span><span class="p">,</span> <span class="n">words</span><span class="p">)))))[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Top 10 positive words: &#39;</span><span class="p">,</span> <span class="n">pos_words</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Top 10 negative words: &#39;</span><span class="p">,</span> <span class="n">neg_words</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 
      </div>
@@ -14683,21 +14749,16 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[64]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pos_files</span><span class="p">,</span> <span class="n">neg_files</span> <span class="o">=</span> <span class="n">find_files</span><span class="p">()</span>
 <span class="n">pos_text</span> <span class="o">=</span> <span class="n">text_retrieve</span><span class="p">(</span><span class="n">pos_files</span><span class="p">)</span>
-<span class="k">del</span> <span class="n">pos_files</span>
 <span class="n">neg_text</span> <span class="o">=</span> <span class="n">text_retrieve</span><span class="p">(</span><span class="n">neg_files</span><span class="p">)</span>
-<span class="k">del</span> <span class="n">neg_files</span>
 <span class="n">pos_lines</span> <span class="o">=</span> <span class="n">create_dataset</span><span class="p">(</span><span class="n">pos_text</span><span class="p">)</span>
-<span class="k">del</span> <span class="n">pos_text</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New no. of positive reviews after data preprocessing: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos_lines</span><span class="p">))</span>
 <span class="n">neg_lines</span> <span class="o">=</span> <span class="n">create_dataset</span><span class="p">(</span><span class="n">neg_text</span><span class="p">)</span>
-<span class="k">del</span> <span class="n">neg_text</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;New no. of negative reviews after data preprocessing: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">neg_lines</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14722,7 +14783,6 @@ No. of negative reviews:  25000
 
 New no. of positive reviews after data preprocessing:  25000
 New no. of negative reviews after data preprocessing:  25000
-
 </pre>
 </div>
 </div>
@@ -14734,21 +14794,59 @@ New no. of negative reviews after data preprocessing:  25000
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[65]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_pos</span><span class="p">,</span> <span class="n">val_pos</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">pos_lines</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">val_pos</span><span class="p">,</span> <span class="n">test_pos</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">val_pos</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">train_neg</span><span class="p">,</span> <span class="n">val_neg</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">neg_lines</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-<span class="n">val_neg</span><span class="p">,</span> <span class="n">test_neg</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">val_neg</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="k">del</span> <span class="n">pos_lines</span><span class="p">,</span> <span class="n">neg_lines</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocabulary</span> <span class="o">=</span> <span class="n">create_vocabulary</span><span class="p">(</span><span class="n">pos_lines</span><span class="p">,</span> <span class="n">neg_lines</span><span class="p">)</span>
+<span class="n">pos_lines</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">pos_lines</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in positive sentences&#39;</span><span class="p">)</span>
+<span class="n">neg_lines</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">neg_lines</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in negative sentences&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>No. of unique words in dataset:  70842
+
+New no. of unique words in dataset:  24437
+
+Unknown words in positive sentences
+Unknown words in negative sentences
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_pos</span><span class="p">,</span> <span class="n">test_pos</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">pos_lines</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">train_neg</span><span class="p">,</span> <span class="n">test_neg</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">neg_lines</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of positive reviews in training set: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_pos</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of negative reviews in training set: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_neg</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of positive reviews in validation set: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">val_pos</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of negative reviews in validation set: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">val_neg</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of positive reviews in testing set: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_pos</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No. of negative reviews in testing set: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_neg</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14768,213 +14866,10 @@ New no. of negative reviews after data preprocessing:  25000
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>No. of positive reviews in training set:  20000
-No. of negative reviews in training set:  20000
-No. of positive reviews in validation set:  2500
-No. of negative reviews in validation set:  2500
+<pre>No. of positive reviews in training set:  22500
+No. of negative reviews in training set:  22500
 No. of positive reviews in testing set:  2500
 No. of negative reviews in testing set:  2500
-
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">vocabulary</span> <span class="o">=</span> <span class="n">create_vocabulary</span><span class="p">(</span><span class="n">train_pos</span><span class="p">,</span> <span class="n">train_neg</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>No. of unique words in training dataset:  63992
-
-New no. of unique words in training dataset:  24227
-
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[67]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_pos</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">train_pos</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in positive sentences of training set removed&#39;</span><span class="p">)</span>
-<span class="n">train_neg</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">train_neg</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in negative sentences of training set removed&#39;</span><span class="p">)</span>
-<span class="n">val_pos</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">val_pos</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in positive sentences of validation set removed&#39;</span><span class="p">)</span>
-<span class="n">val_neg</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">val_neg</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in negative sentences of validation set removed&#39;</span><span class="p">)</span>
-<span class="n">test_pos</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">test_pos</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in positive sentences of testing set removed&#39;</span><span class="p">)</span>
-<span class="n">test_neg</span> <span class="o">=</span> <span class="n">remove_unk_words</span><span class="p">(</span><span class="n">test_neg</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Unknown words in negative sentences of testing set removed&#39;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Unknown words in positive sentences of training set removed
-Unknown words in negative sentences of training set removed
-Unknown words in positive sentences of validation set removed
-Unknown words in negative sentences of validation set removed
-Unknown words in positive sentences of testing set removed
-Unknown words in negative sentences of testing set removed
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[89]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;the&#39;</span>
-<span class="n">probability</span> <span class="o">=</span> <span class="n">find_probability</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">train_pos</span><span class="o">+</span><span class="n">train_neg</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Probability of &quot;&#39;</span><span class="o">+</span><span class="n">word</span><span class="o">+</span><span class="s1">&#39;&quot; in total training corpus = &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">probability</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Probability of &#34;the&#34; in total training corpus =  0
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[90]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;the&#39;</span>
-<span class="n">probability</span> <span class="o">=</span> <span class="n">find_probability</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">train_pos</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Probability of &quot;&#39;</span><span class="o">+</span><span class="n">word</span><span class="o">+</span><span class="s1">&#39;&quot; in positive review training corpus = &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">probability</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Probability of &#34;the&#34; in positive review training corpus =  0
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[91]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">word</span> <span class="o">=</span> <span class="s1">&#39;the&#39;</span>
-<span class="n">probability</span> <span class="o">=</span> <span class="n">find_probability</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">train_neg</span><span class="p">,</span> <span class="n">vocabulary</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Probability of &quot;&#39;</span><span class="o">+</span><span class="n">word</span><span class="o">+</span><span class="s1">&#39;&quot; in negative review training corpus = &#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">probability</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Probability of &#34;the&#34; in negative review training corpus =  0
 </pre>
 </div>
 </div>
@@ -14986,7 +14881,7 @@ Unknown words in negative sentences of testing set removed
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[94]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="p">{}</span>
@@ -14994,58 +14889,15 @@ Unknown words in negative sentences of testing set removed
 <span class="n">train</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_pos</span><span class="p">))]</span>
 <span class="n">train</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">train_neg</span>
 <span class="n">train</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">train_neg</span><span class="p">))]</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[97]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">val</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">val_pos</span>
-<span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_pos</span><span class="p">))]</span>
-<span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">val_neg</span>
-<span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">val_neg</span><span class="p">))]</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[98]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">test</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_pos</span>
 <span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_pos</span><span class="p">))]</span>
 <span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">test_neg</span>
 <span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_neg</span><span class="p">))]</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[100]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
-<span class="n">val</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
 <span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">,</span> <span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
+<span class="n">test</span> <span class="o">=</span> <span class="n">shuffle</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15056,19 +14908,10 @@ Unknown words in negative sentences of testing set removed
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[119]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[28]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_x</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">test_x</span> <span class="o">=</span> <span class="n">tokenize</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">],</span> <span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">],</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentences&#39;</span><span class="p">])</span>
-<span class="n">train_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
-<span class="n">val_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
-<span class="n">test_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;sentiment&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train X shape: &#39;</span><span class="p">,</span> <span class="n">train_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train Y shape: &#39;</span><span class="p">,</span> <span class="n">train_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Validation X shape: &#39;</span><span class="p">,</span> <span class="n">val_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Validation Y shape: &#39;</span><span class="p">,</span> <span class="n">val_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing X shape: &#39;</span><span class="p">,</span> <span class="n">test_x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Testing Y shape: &#39;</span><span class="p">,</span> <span class="n">test_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">naive_bayes</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15088,12 +14931,16 @@ Unknown words in negative sentences of testing set removed
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Train X shape:  (40000, 24208)
-Train Y shape:  (40000,)
-Validation X shape:  (5000, 24208)
-Validation Y shape:  (5000,)
-Testing X shape:  (5000, 24208)
-Testing Y shape:  (5000,)
+<pre>Validation Accuracy for iteration 0 = 0.502
+Validation Accuracy for iteration 1 = 0.504
+Validation Accuracy for iteration 2 = 0.503
+Validation Accuracy for iteration 3 = 0.502
+Validation Accuracy for iteration 4 = 0.493
+
+Test accuracy =  0.5
+
+Top 10 positive words:  (&#39;acacia&#39;, &#39;acharya&#39;, &#39;acromegali&#39;, &#39;aden&#39;, &#39;adjl&#39;, &#39;adonijah&#39;, &#39;advani&#39;, &#39;advisori&#39;, &#39;agey&#39;, &#39;agren&#39;)
+Top 10 negative words:  (&#39;abhay&#39;, &#39;abolitionist&#39;, &#39;acquiesc&#39;, &#39;acrobatti&#39;, &#39;aday&#39;, &#39;ade&#39;, &#39;adelin&#39;, &#39;adentro&#39;, &#39;adroit&#39;, &#39;adventist&#39;)
 </pre>
 </div>
 </div>
@@ -15102,27 +14949,19 @@ Testing Y shape:  (5000,)
 
 </div>
 
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Notebook can be downloaded at <a href="https://github.com/preetham7897/website/blob/master/documents/ganesh_03.ipynb">https://github.com/preetham7897/website/blob/master/documents/ganesh_03.ipynb</a></p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model_training</span><span class="p">(</span><span class="n">train_x</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_x</span><span class="p">,</span> <span class="n">val_y</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span>
 </pre></div>
 
      </div>
