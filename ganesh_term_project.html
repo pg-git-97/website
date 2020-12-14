@@ -16743,6 +16743,23 @@ Prediction Caption:  a man is riding a skateboard down a street .
 </div>
 
 </div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>The main references used for developing this project are given below:</p>
+<ol>
+<li><p>Xu, Kelvin, et al. "Show, attend and tell: Neural image caption generation with visual attention." International conference on machine learning. 2015.</p>
+</li>
+<li><p>Luong, Minh-Thang, Hieu Pham, and Christopher D. Manning. "Effective approaches to attention-based neural machine translation." arXiv preprint arXiv:1508.04025 (2015).</p>
+</li>
+<li><p>Kudo, Taku, and John Richardson. "Sentencepiece: A simple and language independent subword tokenizer and detokenizer for neural text processing." arXiv preprint arXiv:1808.06226 (2018).</p>
+</li>
+</ol>
+<p>The main contribution of this project is to use all the words in the corpus, instead of dropping some rare words. For this purpose we use SentencePiece tokenizer with the vocabulary size of 2048, which would help in splitting rare words into subword tokens. It also helps in reducing the vocabulary size of the corpus thereby reducing the number of units required in the last layer or top layer of the decoder.</p>
+<p>A more clear explanation is given in <a href="https://preetham-ganesh.medium.com/image-captioning-using-luong-attention-and-sentencepiece-tokenizer-2658b0e6f887">https://preetham-ganesh.medium.com/image-captioning-using-luong-attention-and-sentencepiece-tokenizer-2658b0e6f887</a> (Report / Blogpost)</p>
+<p>The notebook can be downloaded at <a href="https://github.com/preetham7897/website/blob/master/documents/ganesh_term_project.ipynb">https://github.com/preetham7897/website/blob/master/documents/ganesh_term_project.ipynb</a></p>
+
+</div>
+</div>
 </body>
 
 
